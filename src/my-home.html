@@ -1,0 +1,987 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-home">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+      .cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+
+/*--------------------------------------------------------------
+1.2 - FORMATTING
+--------------------------------------------------------------*/
+:host {
+  /*background: #343434 url(http://cameronbaney.com/codepen/twitter-widget/bg.jpg);*/
+  background-size: cover;
+  color: #4c4c4c;
+  box-sizing: border-box;
+  min-height:100%;
+  background-color: #f5f5f5;
+}
+  /*background: rgb(150, 150, 150);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(89, 89, 89, 1)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+    background: radial-gradient(ellipse at center, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#969696', endColorstr = '#595959', GradientType = 1);*/
+    
+}
+
+:host > p {
+  bottom: 10px;
+	color: #fff;
+	font-size: 12px;
+	left: 10px;
+	position: absolute;
+}
+:host > p a {
+	color: #fff
+}
+
+/*--------------------------------------------------------------
+2.0 - TWITTER WIDGET
+--------------------------------------------------------------*/
+.twitter-widget {
+	color: #4c4c4c;
+	height: 197px;
+	width:446px;
+	box-shadow: 1px 1px 16px rgba(0,0,0,.58);
+	border-radius:2px;
+}
+
+/*--------------------------------------------------------------
+2.1 - TWITTER WIDGET HEADER
+--------------------------------------------------------------*/
+.header {
+	background: url(http://cameronbaney.com/codepen/twitter-widget/bg-header.jpg) no-repeat;
+	color: #fdfdfd;
+	font: 12px/17px 'HelveticaNeue-UltraLight', Helvetica, Arial, sans-serif;
+	padding: 18px 28px 20px;
+	border-radius:2px 2px 0 0;
+}
+.avatar {
+	float: left;
+	margin-right: 16px;
+	position: relative;
+	border-radius: 50%;
+  width:70px;
+  height:70px;
+  font-size: 45px;
+  font-weight:bold;
+  line-height: 62px;
+  opacity: 0.7;
+  text-align: center;
+}
+	
+.header h2, .header p {
+	float: left;
+	width:288px;
+}
+	.header h2 {
+		font-size:21px;
+		line-height: 32px;
+		margin: 5px 0 -8px;
+    width:auto;
+	}
+
+/*--------------------------------------------------------------
+2.2 - TWITTER WIDGET STATS
+--------------------------------------------------------------*/
+.stats {
+	background: rgb(243,243,243);
+	background: -moz-linear-gradient(top, rgba(243,243,243,1) 0%, rgba(236,236,237,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(243,243,243,1)), color-stop(100%,rgba(236,236,237,1)));
+	background: -webkit-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(236,236,237,1) 100%);
+	background: -o-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(236,236,237,1) 100%);
+	background: -ms-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(236,236,237,1) 100%);
+	background: linear-gradient(to bottom, rgba(243,243,243,1) 0%,rgba(236,236,237,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#ececed',GradientType=0 );
+	border-top:1px solid #fff;
+	border-bottom: 1px solid #d4d4d4;
+}
+.stat {
+	color: #4c4c4c;
+	float:left;
+	font-size: 14px;
+	line-height: 17px;
+	padding: 15px 0 14px;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #fff;
+	width:148px;
+}
+	.stat:first-child{
+		margin-left: 1px
+	}
+	.stat:hover {
+		color: #747474
+	}
+.stat strong {
+	display: block;
+	font-size: 25px;
+	line-height: 25px
+}
+
+#new-post{
+  width:446px;
+}
+
+#new-post .avatar{
+  height:50px;
+  width:50px;
+  line-height: 45px;
+  color:white;
+}
+
+.card{
+  margin:0;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 16px rgba(0,0,0,.58);
+	border-radius:2px;
+  background-color:white;
+  position:relative;
+}
+
+#new-post .avatar{
+
+}
+#new-post textarea, #new-comment textarea{
+    border: none;
+    height: 30px;
+    min-height: 30px;
+    resize: none;
+    transition: height 0.3s ease-in-out;
+    color: #666;
+    width: 60%;
+    font-weight: 500;
+    padding: 5px 10px;
+    border:0;
+    transition: border ease-in .2s;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    font-size:15px;
+    font-weight: lighter;
+    line-height:30px;
+
+}
+
+textarea{
+  border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+}
+
+#new-post textarea:focus, #new-comment textarea:focus{
+  border: 1px solid #ddd;
+    height: 150px;
+    line-height: 21px;
+    box-shadow: none;
+}
+
+textarea:hover{
+  box-shadow:none;
+  
+}
+
+iron-icon:hover{
+  color:#0277BD;
+}
+
+/*--------------------------------------------------------------
+2.3 - TWITTER WIDGET MENU
+--------------------------------------------------------------*/
+.menu {
+	background: rgb(236,236,236);
+	background: -moz-linear-gradient(top, rgba(236,236,236,1) 0%, rgba(233,233,233,1) 86%, rgba(232,232,232,1) 94%, rgba(228,228,228,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(236,236,236,1)), color-stop(86%,rgba(233,233,233,1)), color-stop(94%,rgba(232,232,232,1)), color-stop(100%,rgba(228,228,228,1)));
+	background: -webkit-linear-gradient(top, rgba(236,236,236,1) 0%,rgba(233,233,233,1) 86%,rgba(232,232,232,1) 94%,rgba(228,228,228,1) 100%);
+	background: -o-linear-gradient(top, rgba(236,236,236,1) 0%,rgba(233,233,233,1) 86%,rgba(232,232,232,1) 94%,rgba(228,228,228,1) 100%);
+	background: -ms-linear-gradient(top, rgba(236,236,236,1) 0%,rgba(233,233,233,1) 86%,rgba(232,232,232,1) 94%,rgba(228,228,228,1) 100%);
+	background: linear-gradient(to bottom, rgba(236,236,236,1) 0%,rgba(233,233,233,1) 86%,rgba(232,232,232,1) 94%,rgba(228,228,228,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ececec', endColorstr='#e4e4e4',GradientType=0 );
+	border-top:1px solid #fff;
+	border-radius:0 0 2px 2px;
+	padding: 11px 0;
+	text-align: center
+}
+.menu li {
+	display:inline-block;
+	margin: 0 34px
+}
+.menu a {
+	background: url(http://cameronbaney.com/codepen/twitter-widget/icons.png) no-repeat;
+	display:block;
+	overflow: hidden;
+	text-indent: -9999px
+}
+	.menu .ico-compose {
+		background-position:-1px -2px;
+		width: 25px;
+		height: 26px;
+	}
+	.menu .ico-mentions {
+		background-position: -31px -1px;
+		width: 27px;
+		height: 28px;
+	}
+	.menu .ico-profile {
+		background-position: -65px -1px;
+		width: 24px;
+		height: 27px;
+	}
+	.menu .ico-settings {
+		background-position: -97px -2px;
+		width: 26px;
+		height: 27px;
+	}
+	.menu a:hover {
+		opacity:.75
+	}
+  a.button{
+    position: absolute;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #eee;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+  }
+  a.button.send{
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+  }
+  a.button:hover{
+    background-image: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18))!important;
+    
+  }
+  a.avatar{
+    color:white;
+  }
+  span.time{
+    position:absolute;
+    right:2em;
+    top:2.5em;
+  }
+  .meta{
+    position:relative;
+    height:55px;
+  }
+  .meta  .meta-group{
+    position:absolute;
+  }
+  .meta-group .button{
+    margin-right:10px;
+  }
+  .meta-group span{
+    line-height:40px;
+  }
+
+  .meta-group#like{
+    left:3em;
+  }
+
+  a.button.like iron-icon.beating{
+     animation: beating .5s 1 alternate;
+     color:#FF5252;
+
+  }
+
+  #comments span.beating{
+     animation: beating .5s 1 alternate;
+     color:#01579B;
+  }
+
+  #comments span{
+    display: inline-block;
+    color:#757575;
+  }
+  @keyframes beating {
+  0% { transform: scale(1) }
+  40% { transform: scale(1.25) }
+  70% { transform: scale(.9) }
+  100% { transform: scale(1) }
+}
+  .meta-group#comments{
+    right:2em;
+  }
+
+  .comments{
+    border-top: 1px solid #eee;
+    /*display: none;*/
+  }
+  #new-comment{
+    height: 60px;
+    position: relative;
+    padding: 10px 0;
+  }
+  .comments .avatar{
+    width:60px;
+    height:60px;
+    font-size:40px;
+    line-height:58px;
+  }
+
+  .comments #new-comment textarea:focus{
+    height:50px;
+    width:70%;
+  }
+
+  input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+#right{
+  float:right;
+  width:55%;
+}
+#left{
+  float:left;
+}
+.clearfix:after{
+    content: "";
+  display: table;
+  clear: both;
+}
+
+.post{
+  margin-bottom:10px;
+}
+
+.single-comment{
+  position:relative;
+}
+.single-comment a.avatar{
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    line-height: 40px;
+    margin: 10px 10px 10px 0;
+    float:left;
+}
+
+.single-comment .author{
+    float: left;
+    font-size: 18px;
+    margin: 1em;
+}
+
+.single-comment p{
+    margin: 1.5em 0;
+    font-size: 15px;
+    float:left;
+}
+
+.single-comment span.time{
+    position: absolute;
+    right: 1em;
+    top: 1.4em;
+    font-size: 15px;
+    color:#eee;
+}
+
+.message.success{
+  background-color:#64FFDA;
+}
+
+.message.error{
+  background-color:#FF9E80;
+}
+.message{
+   opacity:0;
+      position: absolute;
+    left: 60px;
+    bottom: -10px;
+    border-radius: 5px;
+     display: inline-block;
+}
+.message.error, .message.success{
+    opacity: 0.5;
+    z-index: 10000;
+  transition: opacity 2s ease-in-out;
+   -moz-transition: opacity 2s ease-in-out;
+   -webkit-transition: opacity 2s ease-in-out;
+
+}
+
+.message p{
+  margin:5px;
+}
+
+.avatar.self{
+  background-color:#795548;
+}
+
+.avatar.a, .avatar.A{
+  background-color:#FF1744;
+}
+
+.avatar.b, .avatar.B{
+  background-color:#F50057;
+}
+
+.avatar.c, .avatar.C{
+  background-color:#D500F9;
+}
+
+.avatar.d, .avatar.D{
+  background-color:#651FFF;
+}
+
+.avatar.e, .avatar.E{
+  background-color:#4527A0;
+}
+
+.avatar.f, .avatar.F{
+  background-color:#3D5AFE;
+}
+
+.avatar.g, .avatar.G{
+  background-color:#FFC400;
+}
+
+.avatar.f, .avatar.F{
+  background-color:#00E676;
+}
+
+.avatar.e, .avatar.E{
+  background-color:#00E676;
+}
+
+.avatar.h, .avatar.H{
+  background-color:#00838F;
+}
+
+.avatar.i, .avatar.I{
+  background-color:#8BC34A;
+}
+
+.avatar.j, .avatar.J{
+  background-color:#AD1457;
+}
+
+.avatar.k, .avatar.K{
+  background-color:#6A1B9A;
+}
+
+.avatar.l, .avatar.L{
+  background-color:#5C6BC0;
+}
+
+.avatar.m, .avatar.M{
+  background-color:#424242;
+}
+
+.avatar.n, .avatar.N{
+  background-color:#EF6C00;
+}
+
+.avatar.o, .avatar.O{
+  background-color:#BF360C;
+}
+
+.avatar.p, .avatar.P{
+  background-color:#01579B;
+}
+
+.avatar.q, .avatar.Q{
+  background-color:#004D40;
+}
+
+.avatar.r, .avatar.R{
+  background-color:#1B5E20;
+}
+
+.avatar.s, .avatar.S{
+  background-color:#0D47A1;
+}
+
+.avatar.t, .avatar.T{
+  background-color:#F4511E;
+}
+
+.avatar.u, .avatar.U{
+  background-color:#43A047;
+}
+
+.avatar.v, .avatar.V{
+  background-color:#3D5AFE;
+}
+
+.avatar.w, .avatar.W{
+  background-color:#F9A825;
+}
+
+.avatar.x, .avatar.X{
+  background-color:#FF9100;
+}
+
+.avatar.y, .avatar.Y{
+  background-color:#37474F;
+}
+
+.avatar.z, .avatar.Z{
+  background-color:#37474F;
+}
+
+a.avatar{
+ background-color:#0091EA;
+}
+
+#logout{
+  float:left;
+  margin:1em 0 0 1em;
+  cursor:pointer;
+}
+
+
+.body-wrapper{
+  max-width:1280px;
+  margin:auto;
+}
+
+
+
+    </style>
+    <div class="body-wrapper clearfix">
+    <div id="left">
+      <div class="twitter-widget">
+        <div class="header cf">
+          <a class$="[[_makeAvatarClass( profile.id, profile.nickname)]]">[[_makeAvatar(profile.nickname)]]</a>
+          <h2>[[profile.nickname]]</h2>
+          <a id="logout" on-tap="_handleLogout">Logout</a>
+          <p>[[profile.bio]]</p>
+        </div>
+        <div class="stats cf">
+          <a href="#" class="stat">
+            <strong>[[profile.post]]</strong>
+            tweets
+          </a>
+          <a href="#" class="stat">
+            <strong>[[profile.following]]</strong>
+            following
+          </a>
+          <a href="#" class="stat">
+            <strong>[[profile.follower]]</strong>
+            followers
+          </a>
+        </div>
+        </div>
+        <div id="new-post" class="new card">
+          <form id="new-post-form">
+            <a class$="[[_makeAvatarClass(profile.id, profile.nickname)]]">[[_makeAvatar(profile.nickname)]]</a>
+            <textarea name="content" placeholder="What's new?"></textarea>
+            <a class="button send"  on-tap="_handlePublish"><iron-icon icon="send"></iron-icon></a>
+            <div class="message"></div>
+          </form>
+        </div>
+    </div>
+    <div id="right">
+      <template is="dom-repeat" items="{{posts}}" as="post">
+        <div class="card post">
+          <a class$="[[_makeAvatarClass(post.author.id, post.author.nickname)]]">[[_makeAvatar(post.author.nickname)]]</a>
+          <h2 class="author">[[post.author.nickname]]</h2>
+          <span class="time">[[_computeTime(post.created)]]</span>
+          <div class="content">
+            <p>[[post.content]]</p>
+          </div>
+          <div class="meta">
+              <div class="meta-group" id="like">
+                <a class="button like"  on-tap="_handleLike"><iron-icon class$="[[_computeLikeClass(post.isLiked)]]" icon="favorite"></iron-icon></a>
+                <span>[[post.like]]</span>
+              </div>
+              <div class="meta-group" id="comments">
+                <a class="button comment"  on-tap="_showComment"><iron-icon icon="communication:comment"></iron-icon></a>
+                <span>[[_countComments(post.comments)]]</span>
+              </div>
+            </div>
+              <div class="comments">
+                  <template is="dom-repeat" items="{{post.comments}}" as="comment">
+                    <div class="single-comment clearfix">
+                      <a class$="[[_makeAvatarClass(comment.author.id, comment.author.nickname)]]">[[_makeAvatar(comment.author.nickname)]]</a>
+                      <h2 class="author">[[comment.author.nickname]]</h2>
+                      <span class="time">[[_computeTime(comment.created)]]</span>
+                      <div class="content">
+                        <p>[[comment.content]]</p>
+                      </div>
+                    </div>
+                  </template>
+              <div id="new-comment">
+                <form id="new-comment-form" action$="[[_computeUrl(post.id)]]">
+                  <a class$="[[_makeAvatarClass(profile.id, profile.nickname)]]">[[_makeAvatar(profile.nickname)]]</a>
+                  <textarea name="content" placeholder="What's in your mind?"></textarea>
+                  <a class="button send"  on-tap="_handleComment"><iron-icon icon="send"></iron-icon></a>
+                  <div class="message"></div>
+                </form>
+              </div>
+              </div>
+          </div>
+        </div>
+
+    </template>
+
+
+
+    </div>
+    </div>
+		<!--<ul class="menu cf">
+			<li><a href="#" class="ico-compose">Compose</a></li>
+			<li><a href="#" class="ico-mentions">Mentions</a></li>
+			<li><a href="#" class="ico-profile">Profile</a></li>
+			<li><a href="#" class="ico-settings">Settings</a></li>
+		</ul>-->
+
+
+    <!--<div class="card">
+      <div class="circle">2</div>
+      <h1>View Two</h1>
+      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
+      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+    </div>-->
+    
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-home',
+      properties: {
+        posts:{
+          type:Array,
+          // observer:"_testPosts"
+        },
+        profile:{
+          type:Object
+        }
+      },
+    listeners:{
+        'dom-change':'_onDomChanged',
+        'refreshHome':'_onRefresh'
+      },
+      ready:function(){
+        console.log("ready");
+        this.baseurl = "http://ec2-35-161-121-154.us-west-2.compute.amazonaws.com:8008";
+        var self = this;
+        $.ajaxSetup({
+            xhrFields: {
+              withCredentials: true
+            },
+            crossDomain: true
+        });
+            $.ajax({
+              type: 'GET',
+              url: self.baseurl+"/users/me",
+              accept: {
+                javascript: 'application/javascript'
+              },
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+              },
+              statusCode:{
+                401:function(){
+                   window.location.replace("/login");
+                }
+              }
+            }).done(function(data) {
+              self.profile = data;
+            });
+            $.ajax({
+              type: 'GET',
+              url: self.baseurl+"/posts",
+              accept: {
+                javascript: 'application/javascript'
+              },
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+                //submitButton.prop('disabled', 'disabled');
+              },
+              statusCode:{
+                401:function(){
+                   window.location.replace("/login");
+                }
+              }
+            }).done(function(data) {
+              self.posts = data;
+              self.isRefresh = true;
+            });
+      },
+      
+      _makeAvatar:function(nickname){
+        return nickname.slice(0,1);
+      },
+
+      _makeAvatarClass:function(id, nickname){
+        if (this.profile && id === this.profile.id){
+          return "self avatar";
+        }
+        return nickname.slice(0,1) + " avatar";
+      },
+
+      _handlePublish:function(){
+        var self = this;
+        var form = $(this.shadowRoot.querySelector('#new-post-form'));
+        var data = form.serialize();
+        var message = form.find('.message');
+        if(data !== "content="){
+            $.ajax({
+              type: 'POST',
+              url: self.baseurl+"/posts",
+              accept: {
+                javascript: 'application/javascript'
+              },
+              data: data,
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+                //submitButton.prop('disabled', 'disabled');
+              }
+            }).done(function(data) {
+              form.find('textarea').val("");
+              message.addClass('success');
+              message.html('<p>New tweet was published</p>');
+              self.unshift('posts', data);
+              setTimeout(function(){
+              message.removeClass('success');
+               message.html('');
+            }, 2000);
+            }).fail(function(){
+              message.addClass('failed');
+              message.html('<p>Some error occured. Please Try Again Later.</p>');
+              setTimeout(function(){
+              message.removeClass('failed');
+              message.html('');
+            }, 2000);
+            });
+        }
+
+      },
+      _computeTime:function(previous){
+        var previous = previous * 1000;
+        var current = Math.floor(Date.now());
+        var msPerMinute = 60 * 1000;
+        var msPerHour = msPerMinute * 60;
+        var msPerDay = msPerHour * 24;
+        var msPerMonth = msPerDay * 30;
+        var msPerYear = msPerDay * 365;
+
+        var elapsed = current - previous;
+
+        if (elapsed < msPerMinute) {
+            return Math.round(elapsed/1000) + ' seconds ago';   
+        }
+
+        else if (elapsed < msPerHour) {
+            return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+        }
+
+        else if (elapsed < msPerDay ) {
+            return Math.round(elapsed/msPerHour ) + ' hours ago';   
+        }
+
+        else if (elapsed < msPerMonth) {
+            return  Math.round(elapsed/msPerDay) + ' days ago';   
+        }
+
+        else if (elapsed < msPerYear) {
+            return Math.round(elapsed/msPerMonth) + ' months ago';   
+        }
+
+        else {
+            return Math.round(elapsed/msPerYear ) + ' years ago';   
+        }
+      },
+
+      _computeLikeClass:function(isLiked){
+        if (isLiked){
+          return "beating"
+        }
+        return ""
+      },
+
+      _countComments:function(comments){
+        return comments.length;
+      },
+
+      _handleLike:function(e){       
+        var self = this;
+        var heart = $(e.target);
+        if(heart.hasClass("beating")){
+          return;
+        }
+        heart.addClass("beating");
+        $.ajax({
+              type: 'POST',
+              url: self.baseurl+"/posts/"+e.model.post.id +"/likes",
+              accept: {
+                javascript: 'application/javascript'
+              },
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+              },
+            }).done(function(data) {
+              var likes = heart.parent().siblings('span').text();
+              heart.parent().siblings('span').text(Number(likes)+1);
+            });
+          
+            
+
+      },
+
+      _handleComment:function(e){
+        var self = this;
+        var form = $(e.target).closest('#new-comment-form');
+        // console.log(e.model.post);
+        var data = form.serialize();
+        var message = form.find('.message');
+        var commentSpan = form.closest('.post').find('#comments  span');
+        if (data !== "content="){
+                  $.ajax({
+              type: 'POST',
+              url: form.prop('action'),
+              accept: {
+                javascript: 'application/javascript'
+              },
+              data: form.serialize(),
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+                //submitButton.prop('disabled', 'disabled');
+              }
+            }).done(function(data) {
+              form.find('textarea').val("");
+              message.addClass('success');
+              message.html('<p>New Comment was published</p>');
+              setTimeout(function(){
+              message.html('');
+              message.removeClass('success');
+              var commentNumber = commentSpan.text();
+              commentSpan.text(Number(commentNumber) + 1);
+              commentSpan.addClass("beating");
+              setTimeout(function(){
+                commentSpan.removeClass("beating");
+              },2000);
+              var index = self.posts.indexOf(e.model.post);
+              console.log(index);
+              self.unshift('posts.'+index+'.comments', data);
+            }, 2000);
+
+            }).fail(function(){
+              message.addClass('failed');
+              message.html('<p>Some error occured. Please Try Again Later.</p>');
+              setTimeout(function(){
+              message.html('');
+              message.removeClass('failed');
+            }, 2000);
+            });
+        }
+
+      },
+
+      _computeUrl:function(id){
+        return this.baseurl+"/posts/" + id +"/comments";
+      },
+
+      _showComment:function(e){
+        var comments = $(e.target).closest('.meta').siblings('.comments');
+        comments.slideToggle();
+      },
+
+      _onDomChanged:function(){
+        if (this.isRefresh){
+          $(Polymer.dom(this.shadowRoot).querySelectorAll('.comments')).hide();
+        }
+        this.isRefresh = false;
+      },
+      
+
+      // _testPosts:function(){
+      //   console.log(this.posts);
+      // }
+
+      _handleLogout: function(){
+        var self = this;
+            $.ajax({
+              type: 'GET',
+              url: self.baseurl+"/logout",
+              accept: {
+                javascript: 'application/javascript'
+              },
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+              },
+            }).done(function(data) {
+              window.location.replace("/login");
+            });
+      },
+
+      refresh: function(){
+        var self = this;
+            $.ajax({
+              type: 'GET',
+              url: self.baseurl+"/users/me",
+              accept: {
+                javascript: 'application/javascript'
+              },
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+              },
+              statusCode:{
+                401:function(){
+                   window.location.replace("/login");
+                }
+              }
+            }).done(function(data) {
+              self.profile = data;
+            });
+            $.ajax({
+              type: 'GET',
+              url: self.baseurl+"/posts",
+              accept: {
+                javascript: 'application/javascript'
+              },
+              beforeSend: function(xhr) {
+                 xhr.withCredentials = true;
+                //submitButton.prop('disabled', 'disabled');
+              },
+              statusCode:{
+                401:function(){
+                   window.location.replace("/login");
+                }
+              }
+            }).done(function(data) {
+              self.posts = data;
+              self.isRefresh = true;
+            });
+      }
+
+    });
+  </script>
+</dom-module>
